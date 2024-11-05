@@ -1,11 +1,12 @@
 <?php include 'pages/base/header.php'; ?>
+
+<?php session_start(); ?>
+
 <main>
+
+
     <div class="calcForm">
         <h1>Калькулятор</h1>
-        <?php session_start(); ?>
-
-
-
 
         <form action="scripts/php/validate.php" method="POST">
             <div class="row">
@@ -84,11 +85,11 @@
             }
             ?>
 
-            <div class="row">
-                <button>Рассчитать</button>
+            <div class="row submitRow">
+                <button type="submit">Рассчитать</button>
                 <?php
                 if (isset($_SESSION['result'])) {
-                    echo '<div class="">' . $_SESSION['result'] . '</div>';
+                    echo $_SESSION['result'];
                     unset($_SESSION['result']);
                 }
                 ?>

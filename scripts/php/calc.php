@@ -7,11 +7,9 @@ $depositPeriod = $_SESSION['depositPeriod'];
 $depositReplenishment = $_SESSION['depositReplenishment'];
 $amountReplenishmentValue = isset($_SESSION['amountReplenishmentValue']) ? $_SESSION['amountReplenishmentValue'] : 0;
 
-// Установим процентную ставку
-$percent = 0.10; // 10%
-$daysInYear = 365; // Количество дней в году
+$percent = 0.10;
+$daysInYear = 365;
 
-// Определяем количество месяцев в зависимости от выбранного периода
 $monthsInYear = [
     "oneYear" => 12,
     "twoYears" => 24,
@@ -24,30 +22,22 @@ $totalMonths = $monthsInYear[$depositPeriod];
 $initialAmount = floatval($depositAmountValue);
 $totalAmount = $initialAmount;
 
-// Получение даты начала вклада
 $startDate = DateTime::createFromFormat('d-m-Y', $datepicker);
 
-// Итерация по месяцам для расчета суммы
 for ($n = 1; $n <= $totalMonths; $n++) {
-    // Получаем количество дней в текущем месяце
     $daysInMonth = cal_days_in_month(CAL_GREGORIAN, $startDate->format('n'), $startDate->format('Y'));
 
-    // Если пополнение вклада "да", мы учитываем его в расчетах
     if ($depositReplenishment === "Replenishment") {
-        $totalAmount += $amountReplenishmentValue; // добавляем сумму пополнения
+        $totalAmount += $amountReplenishmentValue;
     }
 
-    // Вычисляем итоговую сумму на конец месяца
     $totalAmount += ($totalAmount + ($depositReplenishment === "Replenishment" ? $amountReplenishmentValue : 0)) * ($percent / $daysInYear) * $daysInMonth;
 
-    // Переход к следующему месяцу
     $startDate->modify('first day of next month');
 }
 
-// Сохраняем результат в сессии для вывода на странице
-$_SESSION['result'] = "Итоговая сумма на счете: " . number_format($totalAmount, 2, ',', ' ') . " руб.";
+$_SESSION['result'] = "<div class='result'><p>Результат:</p> " . number_format($totalAmount, 2, ',', ' ') . " руб</div>";
 
-// Перенаправление обратно на главную страницу
 header("Location: ../../index.php");
 exit();
 ?>

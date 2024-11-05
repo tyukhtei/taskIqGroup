@@ -4,6 +4,9 @@
     box-sizing: border-box;
     font-family: Arial, sans-serif;
 }
+html{
+    height: 100%;
+}
 body{
     display: flex;
     flex-direction: column;
@@ -49,12 +52,11 @@ header .contacts a{
     font-size: 24px;
     color: #eb5017;
 }
-header .row:last-child{
-    margin: 30px 0 0 0;
-}
 header .row .nav{
     width: 100%;
     height: 40px;
+    margin: 30px 0;
+    padding: 0 max(50px);
     background-color: #231f20;
     display: flex;
     align-items: center;
@@ -80,6 +82,9 @@ header .row .nav a:hover{
     background-color: #bf3e0f;
 }
 /*---MAIN---*/
+main{
+    flex: 1;
+}
 main h1{
     color: #f54e0e;
     margin: 0 0 0 10%;
@@ -177,7 +182,6 @@ main h1{
 .calcForm .row button{
     height: 30px;
     padding: 0 15px;
-    margin: 20px 0 0 0;
     border-radius: 8px;
     background-color: #b7f234;
     border: 1px solid #d8dcb7;
@@ -193,4 +197,39 @@ main h1{
 }
 .alert{
     color: #ba0404;
+}
+.result{
+    display: flex;
+    align-items: center;
+}
+.calcForm .result p{
+    color: #616e37;
+    display: inline-flex;
+    align-items: center;
+    width: min-content;
+    margin: 0 10px 0 20px;
+}
+.calcForm .submitRow{
+    margin: 50px 0 0 0;
+}
+.breadcrumbs a{
+    padding: 0 0 0 20px;
+    text-decoration: underline;
+    color: #000;
+}
+/*---FOOTER---*/
+footer{
+    width: 100%;
+    height: 40px;
+    background-color: #231f20;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px max(50px) 50px max(50px);
+}
+footer a{
+    margin: 0 20px 0 0;
+    color: #fff;
+    text-decoration: underline;
+    font-size: 18px;
 }

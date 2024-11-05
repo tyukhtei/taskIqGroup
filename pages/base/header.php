@@ -38,4 +38,9 @@
                 <a href="#">Интернет-банк</a>
             </div>
         </div>
+        <div class="row">
+
+            <?php include 'scripts/php/breadcrumbs.php';
+            renderBreadcrumbs('Калькулятор'); ?>
+        </div>
     </header>
