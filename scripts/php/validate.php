@@ -5,6 +5,7 @@ validateForm();
 
 function validateForm()
 {
+    $_SESSION["error"]=[];
     if ($_SERVER["REQUEST_METHOD"] != "POST") {
         return;
     }
@@ -15,7 +16,7 @@ function validateForm()
     checkDepositReplenishment();
     checkAmountReplenishment();
 
-    if (count($_SESSION["error"]) > 0){
+    if (count($_SESSION["error"])>0){
         header("Location: ../../index.php");
         exit();
     }
